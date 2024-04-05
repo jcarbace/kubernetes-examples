@@ -1,18 +1,6 @@
 # https://kubernetes.io/docs/concepts/workloads/controllers/statefulset/
 ---
 apiVersion: v1
-kind: PersistentVolume
-metadata:
-  name: stateful-set-shared-pv-volume
-spec:
-  accessModes:
-    - ReadWriteMany
-  capacity:
-    storage: 1M
-  hostPath:
-    path: /tmp
----
-apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   name: stateful-set-shared-pv-claim
@@ -22,9 +10,7 @@ spec:
   resources:
     requests:
       storage: 1M
-  selector:
-    matchLabels:
-      pv: stateful-set-shared-pv-volume
+  storageClassName: "managed-csi"
 ---
 apiVersion: v1
 kind: Service

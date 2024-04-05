@@ -29,6 +29,7 @@ kind: Service
 metadata:
   name: webserver-simple-service
 spec:
+  type: LoadBalancer
   selector:
     app: webserver-simple-app
   ports:
